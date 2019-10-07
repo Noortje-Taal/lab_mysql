@@ -1,0 +1,69 @@
+1. Which are the different genres?
+SELECT DISTINCT prime_genre FROM appleStore.data 
+
+2. Which is the genre with more apps rated?
+SELECT SUM(rating_count_tot) AS sum, prime_genre 
+FROM data 
+GROUP BY prime_genre 
+ORDER BY sum DESC 
+
+3. Which is the genre with more apps?
+SELECT COUNT(*), prime_genre
+FROM data 
+GROUP BY prime_genre 
+ORDER BY COUNT(*) DESC 
+
+4. Which is the one with less?
+SELECT COUNT(*), prime_genre
+FROM data 
+GROUP BY prime_genre 
+ORDER BY COUNT(*) ASC
+
+5. Take the 10 apps most rated.
+SELECT rating_count_tot, track_name
+FROM data
+ORDER BY rating_count_tot DESC
+LIMIT 10 
+
+6. Take the 10 apps best rated by users.
+SELECT user_rating, track_name
+FROM data
+ORDER BY user_rating DESC
+LIMIT 10 
+
+7. Take a look on the data you retrieved in the question 5. Give some insights.
+''' You can really see the difference between the 1th, 2th, 3th etc. and you can see that Facebook and Instagram are in the top 2. 
+This is not suprising because these apps are very popular, almost everyone have those social media apps on their phone. 
+For this reason, the chance that the app will be rated is higher that a less populair app.''' 
+
+8. Take a look on the data you retrieved in the question 6. Give some insights.
+'''You see that all of the 10 track_names are 5. You can not really tell the difference between the 1th and the 10th.''' 
+
+9. Now compare the data from questions 5 and 6. What do you see?
+''' The most rated is not equal to the highest rated. Maybe the highest rated are less reliable. ''' 
+
+10. How could you take the top 3 regarding the user ratings but also the number of votes?
+SELECT user_rating, rating_count_tot, track_name
+FROM data 
+WHERE user_rating = 5
+ORDER BY rating_count_tot DESC
+LIMIT 3
+
+11. Does people care about the price? Do some queries, comment why are you doing them and the results you retrieve. What is your conclusion?
+SELECT user_rating, rating_count_tot, track_name, price 
+FROM data 
+WHERE user_rating = 5
+ORDER BY rating_count_tot DESC 
+LIMIT 100 
+
+''' No the price does not matter. In the top 100 (in which the user_rating = 5 and the total ratings are the highest) 
+you can see that the prices vary from 10 to 0. Most of them are 0, but you can not draw the conclusion that it does matter based on the data.'''  
+
+''' BONUS from Jan '''
+
+12. Take the 10 genres most rated.
+SELECT prime_genre, SUM(rating_count_tot)
+FROM data
+GROUP BY prime_genre 
+ORDER BY SUM(rating_count_tot) DESC 
+LIMIT 10 
