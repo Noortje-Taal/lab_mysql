@@ -1,3 +1,7 @@
+'''
+L.S. Very good! For next time, it's easier to store it as a sql file. 
+'''
+
 1. Which are the different genres?
 SELECT DISTINCT prime_genre FROM appleStore.data 
 
@@ -6,6 +10,10 @@ SELECT SUM(rating_count_tot) AS sum, prime_genre
 FROM data 
 GROUP BY prime_genre 
 ORDER BY sum DESC 
+
+'''
+L.S. Correct!
+'''
 
 3. Which is the genre with more apps?
 SELECT COUNT(*), prime_genre
@@ -24,6 +32,10 @@ SELECT rating_count_tot, track_name
 FROM data
 ORDER BY rating_count_tot DESC
 LIMIT 10 
+
+'''
+L.S. Good!
+'''
 
 6. Take the 10 apps best rated by users.
 SELECT user_rating, track_name
@@ -48,6 +60,10 @@ FROM data
 WHERE user_rating = 5
 ORDER BY rating_count_tot DESC
 LIMIT 3
+
+'''
+L.S. Correct!
+''''
 
 11. Does people care about the price? Do some queries, comment why are you doing them and the results you retrieve. What is your conclusion?
 SELECT user_rating, rating_count_tot, track_name, price 
